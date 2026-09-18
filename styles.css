@@ -1,11 +1,23 @@
-#container {
+.grid-container {
     width: 500px;
+    margin: 0 auto;
+}
+
+.button-container {
+    margin: 16px auto;
+}
+
+.button {
+    display: block;
+    margin: 0 auto;
+    padding: 16px 32px;
 }
 
 .row {
     display: flex;
 }
 
-.column {
+.square {
     border: 1px solid black;
+    box-sizing: border-box;
 }
