@@ -16,6 +16,11 @@ function createGrid() {
         for (let j = 0; j < numberOfSquares; j++) {
             const square = document.createElement("div");
             square.classList.add("square");
+
+            let size = 500 / numberOfSquares;
+            square.style.width = size + "px";
+            square.style.height = size + "px";
+
             row.appendChild(square);
             square.addEventListener("mouseenter", () => square.style.backgroundColor = "rebeccapurple");
         }
@@ -26,7 +31,7 @@ function createButton() {
     const button = document.createElement("button")
     button.textContent = "Press Me!";
     button.addEventListener("click", createGrid);
-    div.insertBefore(button, div.firstChild);
+    document.body.insertBefore(button, document.body.firstChild);
 }
 
 let div = document.createElement("div");
