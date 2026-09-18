@@ -30,10 +30,12 @@ function createGrid() {
             let red = randomizeColor();
             let green = randomizeColor();
             let blue = randomizeColor();
-            square.addEventListener(
-                "mouseenter",
-                () => square.style.backgroundColor = `rgb(${red}, ${green}, ${blue}` 
-            );
+            let opacity = 0;
+            square.addEventListener("mouseenter", () => {
+                square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+                opacity += 0.1
+                square.style.opacity = opacity + "";
+            });
         }
     }
 }
@@ -46,7 +48,7 @@ function createButton() {
 }
 
 function randomizeColor() {
-    return Math.floor(Math.random() * 200) + 1;
+    return Math.floor(Math.random() * 255) + 1;
 }
 
 let div = document.createElement("div");
