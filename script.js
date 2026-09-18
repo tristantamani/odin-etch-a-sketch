@@ -1,10 +1,19 @@
 function createGrid() {
-    for (let i = 0; i < 16; i++) {
+    let numberOfSquares = prompt("Enter number of squares per side: ");
+
+    if (document.querySelector(".row") != null) {
+        let allRows = document.querySelectorAll(".row");
+        for (const row of allRows) {
+            div.removeChild(row);
+        }
+    }
+
+    for (let i = 0; i < numberOfSquares; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
         div.appendChild(row);
 
-        for (let j = 0; j < 16; j++) {
+        for (let j = 0; j < numberOfSquares; j++) {
             const square = document.createElement("div");
             square.classList.add("square");
             row.appendChild(square);
@@ -13,6 +22,15 @@ function createGrid() {
     }
 }
 
-const div = document.querySelector("#container");
+function createButton() {
+    const button = document.createElement("button")
+    button.textContent = "Press Me!";
+    button.addEventListener("click", createGrid);
+    div.insertBefore(button, div.firstChild);
+}
 
-createGrid();
+let div = document.createElement("div");
+div.id = "container";
+document.body.appendChild(div);
+
+createButton();
