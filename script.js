@@ -8,37 +8,39 @@ function createGrid() {
     if (document.querySelector(".row") != null) {
         let allRows = document.querySelectorAll(".row");
         for (const row of allRows) {
-            div.removeChild(row);
+            gridContainer.removeChild(row);
         }
     }
 
+    drawGrid(numberOfSquares);
+}
+
+function drawGrid(numberOfSquares) {
     for (let i = 0; i < numberOfSquares; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
-        div.appendChild(row);
+        gridContainer.appendChild(row);
 
         for (let j = 0; j < numberOfSquares; j++) {
             const column = document.createElement("div");
-            column.classList.add("column");
-
             const square = document.createElement("div");
-            square.classList.add("square");
 
             let size = 500 / numberOfSquares;
-            square.style.width = size + "px";
-            square.style.height = size + "px";
-
-            column.appendChild(square);
-            row.appendChild(column);
-
             let red = randomizeColor();
             let green = randomizeColor();
             let blue = randomizeColor();
             let opacity = 0;
+
+            column.classList.add("column");
+            square.classList.add("square");
+            square.style.width = size + "px";
+            square.style.height = size + "px";
+            column.appendChild(square);
+            row.appendChild(column);
+
             square.addEventListener("mouseenter", () => {
-                square.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
                 opacity += 0.1
-                square.style.opacity = opacity + "";
+                square.style.backgroundColor = `rgb(${red}, ${green}, ${blue}, ${opacity})`;
             });
         }
     }
@@ -46,17 +48,22 @@ function createGrid() {
 
 function createButton() {
     const button = document.createElement("button")
+    button.classList.add("button");
     button.textContent = "Press Me!";
     button.addEventListener("click", createGrid);
-    document.body.insertBefore(button, document.body.firstChild);
+    buttonContainer.appendChild(button);
 }
 
 function randomizeColor() {
     return Math.floor(Math.random() * 255) + 1;
 }
 
-let div = document.createElement("div");
-div.id = "container";
-document.body.appendChild(div);
+const gridContainer = document.createElement("div");
+const buttonContainer = document.createElement("div")
+
+gridContainer.classList.add("grid-container");
+buttonContainer.classList.add("button-container");
+document.body.appendChild(buttonContainer);
+document.body.appendChild(gridContainer);
 
 createButton();
