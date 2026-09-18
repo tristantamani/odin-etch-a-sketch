@@ -26,7 +26,14 @@ function createGrid() {
             square.style.height = size + "px";
 
             row.appendChild(square);
-            square.addEventListener("mouseenter", () => square.style.backgroundColor = "rebeccapurple");
+
+            let red = randomizeColor();
+            let green = randomizeColor();
+            let blue = randomizeColor();
+            square.addEventListener(
+                "mouseenter",
+                () => square.style.backgroundColor = `rgb(${red}, ${green}, ${blue}` 
+            );
         }
     }
 }
@@ -36,6 +43,10 @@ function createButton() {
     button.textContent = "Press Me!";
     button.addEventListener("click", createGrid);
     document.body.insertBefore(button, document.body.firstChild);
+}
+
+function randomizeColor() {
+    return Math.floor(Math.random() * 200) + 1;
 }
 
 let div = document.createElement("div");
