@@ -1,5 +1,9 @@
 function createGrid() {
-    let numberOfSquares = prompt("Enter number of squares per side: ");
+    let numberOfSquares = prompt("Enter number of squares per side <= 100: ");
+
+    while (numberOfSquares > 100 || numberOfSquares < 1) {
+        numberOfSquares = prompt("Enter number of squares per side <= 100: ");
+    }
 
     if (document.querySelector(".row") != null) {
         let allRows = document.querySelectorAll(".row");
