@@ -18,6 +18,9 @@ function createGrid() {
         div.appendChild(row);
 
         for (let j = 0; j < numberOfSquares; j++) {
+            const column = document.createElement("div");
+            column.classList.add("column");
+
             const square = document.createElement("div");
             square.classList.add("square");
 
@@ -25,7 +28,8 @@ function createGrid() {
             square.style.width = size + "px";
             square.style.height = size + "px";
 
-            row.appendChild(square);
+            column.appendChild(square);
+            row.appendChild(column);
 
             let red = randomizeColor();
             let green = randomizeColor();
